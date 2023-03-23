@@ -16,3 +16,69 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+function generatePassword() {
+  // this acts as a temp data holder or storage
+  var tempPassword = "";
+  //var tempPassword = [];
+
+  // We need to prompt the USER for data
+    // alert()
+    // confirm()
+    // prompt()
+  var userLength = prompt("How long would you like your password to be? (password should be between 8 and 128 characters)");
+  console.log("Length: ", userLength);
+  console.log("Type: ", typeof userLength);
+  // We need to do some validation..
+  if(userLength < 8 || userLength > 128) {
+    alert("Password should be between 8 and 128 characters!");
+    generatePassword();
+    //return null;
+  }
+  
+  /*
+  if(userLength > 128) {
+    alert("Password should be between 8 and 128 characters!");
+    generatePassword();
+    //return null;
+  }
+  */
+
+  // We need to filter in / out our datasets
+  var userUppercase = confirm("Would you like to include uppercase characters in your password?");
+  console.log("User Choice: ", userUppercase)
+  console.log("User type: ", typeof userUppercase)
+  if(userUppercase == true) {
+    // we want to add a character from this dataset to our temp dataset
+    tempPassword = tempPassword + upperChar[5]
+  }
+
+  var userLowercase = confirm("Would you like to include lowercase characters in your password?");
+  console.log("User Choice: ", userLowercase)
+  console.log("User type: ", typeof userLowercase)
+  if(userLowercase == true) {
+    // we want to add a character from this dataset to our temp dataset
+    tempPassword = tempPassword + lowerChar[15]
+  }
+
+  var userNumber = confirm("Would you like to include numbers in your password?");
+  console.log("User Choice: ", userNumber)
+  console.log("User type: ", typeof userNumber)
+  if(userNumber == true) {
+    // we want to add a character from this dataset to our temp dataset
+    tempPassword = tempPassword + numberChar[5]
+  }
+
+  var userSpecialChar = confirm("Would you like to include special characters in your password?");
+  console.log("User Choice: ", userSpecialChar)
+  console.log("User type: ", typeof userSpecialChar)
+  if(userSpecialChar == true) {
+    // we want to add a character from this dataset to our temp dataset
+    tempPassword = tempPassword + specialChar[3]
+  }
+
+  console.log("Temp Pass: ", tempPassword)
+
+  return tempPassword;
+}
