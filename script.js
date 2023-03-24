@@ -21,6 +21,7 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword() {
   // this acts as a temp data holder or storage
   var tempPassword = "";
+  var selectedChar = []; 
   //var tempPassword = [];
 
   // We need to prompt the USER for data
@@ -51,7 +52,7 @@ function generatePassword() {
   console.log("User type: ", typeof userUppercase)
   if(userUppercase == true) {
     // we want to add a character from this dataset to our temp dataset
-    tempPassword = tempPassword + upperChar[5]
+    selectedChar = selectedChar.concat (upperChar)
   }
 
   var userLowercase = confirm("Would you like to include lowercase characters in your password?");
@@ -59,7 +60,7 @@ function generatePassword() {
   console.log("User type: ", typeof userLowercase)
   if(userLowercase == true) {
     // we want to add a character from this dataset to our temp dataset
-    tempPassword = tempPassword + lowerChar[15]
+    selectedChar = selectedChar.concat (lowerChar)
   }
 
   var userNumber = confirm("Would you like to include numbers in your password?");
@@ -67,7 +68,7 @@ function generatePassword() {
   console.log("User type: ", typeof userNumber)
   if(userNumber == true) {
     // we want to add a character from this dataset to our temp dataset
-    tempPassword = tempPassword + numberChar[5]
+    selectedChar = selectedChar.concat (numberChar)
   }
 
   var userSpecialChar = confirm("Would you like to include special characters in your password?");
@@ -75,10 +76,15 @@ function generatePassword() {
   console.log("User type: ", typeof userSpecialChar)
   if(userSpecialChar == true) {
     // we want to add a character from this dataset to our temp dataset
-    tempPassword = tempPassword + specialChar[3]
+    selectedChar = selectedChar.concat (specialChar)
   }
 
-  console.log("Temp Pass: ", tempPassword)
+  console.log("Temp Pass: ", selectedChar) 
 
+  for (var i=0; i<userLength; i++) {
+    var charIndex= Math.floor(Math.random()*selectedChar.length)
+    var randomChar= selectedChar[charIndex]
+    tempPassword = tempPassword + randomChar
+  }
   return tempPassword;
 }
